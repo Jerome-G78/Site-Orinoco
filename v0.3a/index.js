@@ -31,12 +31,12 @@ xhr.onload = function(){
             addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,CAM.price);
         }
         
-        let Item = document.getElementsByClassName("Item");
+        let Item = document.getElementsByClassName("link");
         console.log(Item);
         Item.addEventListener('click', event => {
             console.log("OK");
             event.preventDefault();
-            Details(this);
+            details(this);
         })
     }
 };
@@ -59,13 +59,13 @@ function addElement (id,name,imageUrl,description,price){
 
     let tr = document.createElement("tr");
     tr.id = id;
-    tr.setAttribute("class","Item");
 
     let td1 = document.createElement("td");
     
     let link = document.createElement("a");
     link.setAttribute("href","produits.html");
-    link.setAttribute("class",id + " test");
+    link.setAttribute("class","link");
+    link.setAttribute("data-id", id);
 
     link.appendChild(document.createTextNode(id));
     td1.appendChild(link);
@@ -106,7 +106,11 @@ function addElement (id,name,imageUrl,description,price){
 
 //Se rendre sur la page d'un produit
 
-function Details (Item) {
-   localStorage.setItem("ID", document.getElementsByClassName(Item.innerHTML));
+function details (Item) {
+    Item = document.getElementsByClassName("link");
+    let pID =Item.dataset.id;
+   localStorage.setItem("ID", pID);
    console.log(localStorage.getItem("ID"));
 }
+
+Item.addEventListener ("click",details(Item));
