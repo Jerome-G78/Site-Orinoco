@@ -27,8 +27,8 @@ xhr.onload = function(){
         console.log(xhr.response);              // Récupération des informations dans la console
 
         for (i =0; i < xhr.response.length; i++){   // Affichage du produit séléctionnée
-            if (Data[i]._id == ID){
-            CAM = new CreateItem (Data[i]._id,Data[i].name,Data[i].imageUrl,Data[i].description,Data[i].lenses[0],Data[i].lenses[1],Data[i].price);
+            if (xhr.response[i]._id == ID){
+            CAM = new createItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].lenses[0],xhr.response[i].lenses[1],xhr.response[i].price);
             addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Data[i].lenses[0],Data[i].lenses[1],CAM.price);}
         }
     }
@@ -36,7 +36,7 @@ xhr.onload = function(){
 
 // Fonction de création d'un produit
 
-function CreateItem (ID,name,imageUrl,description,lense1,lense2,price){
+function createItem (ID,name,imageUrl,description,lense1,lense2,price){
     this._id = ID,
     this.name = name,
     this.imageUrl = imageUrl,

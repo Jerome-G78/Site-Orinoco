@@ -27,24 +27,23 @@ xhr.onload = function(){
         console.log(xhr.response);              // Récupération des informations dans la console
 
         for (i =0; i < xhr.response.length; i++){   // Boucle for pour créer la liste des produits
-            CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].price);
+            CAM = new createItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].price);
             addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,CAM.price);
         }
-        //
-        let Item1 = document.getElementsByClassName("Item");
-        console.log(Item1);
-        Item1.addEventListener('click', event => {
+        
+        let Item = document.getElementsByClassName("Item");
+        console.log(Item);
+        Item.addEventListener('click', event => {
             console.log("OK");
             event.preventDefault();
             Details(this);
         })
-
     }
 };
 
 // Fonction de création d'un produit
 
-function CreateItem (ID,name,imageUrl,description,price){
+function createItem (ID,name,imageUrl,description,price){
     this._id = ID,
     this.name = name,
     this.imageUrl = imageUrl,
@@ -108,7 +107,6 @@ function addElement (id,name,imageUrl,description,price){
 //Se rendre sur la page d'un produit
 
 function Details (Item) {
-   // localStorage.setItem("ID", document.getElementsByClassName(Item.innerHTML));
-   // console.log(localStorage.getItem("ID"));
-   console.log(Item);
+   localStorage.setItem("ID", document.getElementsByClassName(Item.innerHTML));
+   console.log(localStorage.getItem("ID"));
 }
