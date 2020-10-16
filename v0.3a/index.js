@@ -27,23 +27,21 @@ xhr.onload = function(){
         console.log(xhr.response);              // Récupération des informations dans la console
 
         for (i =0; i < xhr.response.length; i++){   // Boucle for pour créer la liste des produits
-            CAM = new createItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].price);
+            CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].price);
             addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,CAM.price);
         }
-        
-        let Item = document.getElementsByClassName("link");
+        //
+        let Item = document.getElementsByClassName("Item");
         console.log(Item);
-        Item.addEventListener('click', event => {
-            console.log("OK");
-            event.preventDefault();
-            details(this);
-        })
+        
+        Item[0].addEventListener("click",details(Item));
+        
     }
 };
 
 // Fonction de création d'un produit
 
-function createItem (ID,name,imageUrl,description,price){
+function CreateItem (ID,name,imageUrl,description,price){
     this._id = ID,
     this.name = name,
     this.imageUrl = imageUrl,
@@ -59,13 +57,12 @@ function addElement (id,name,imageUrl,description,price){
 
     let tr = document.createElement("tr");
     tr.id = id;
+    tr.setAttribute("class","Item");
 
     let td1 = document.createElement("td");
     
     let link = document.createElement("a");
     link.setAttribute("href","produits.html");
-    link.setAttribute("class","link");
-    link.setAttribute("data-id", id);
 
     link.appendChild(document.createTextNode(id));
     td1.appendChild(link);
@@ -106,11 +103,6 @@ function addElement (id,name,imageUrl,description,price){
 
 //Se rendre sur la page d'un produit
 
-function details (Item) {
-    Item = document.getElementsByClassName("link");
-    let pID =Item.dataset.id;
-   localStorage.setItem("ID", pID);
-   console.log(localStorage.getItem("ID"));
+function details (Item){
+    localStorage.setItem("ID",Item[0].id);
 }
-
-Item.addEventListener ("click",details(Item));
