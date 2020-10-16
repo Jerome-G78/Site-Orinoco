@@ -30,12 +30,16 @@ xhr.onload = function(){
             CAM = new CreateItem (xhr.response[i]._id,xhr.response[i].name,xhr.response[i].imageUrl,xhr.response[i].description,xhr.response[i].price);
             addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,CAM.price);
         }
-        //
-        let Item = document.getElementsByClassName("Item");
-        console.log(Item);
-        
-        Item[0].addEventListener("click",details(Item));
-        
+    }
+
+    let Item = document.getElementsByClassName("Item");
+    console.log(Item);
+
+    Item[0].addEventListener("click",details(Item));
+
+    // Récupération de l'ID dans localStorage
+    function details (Item){
+        localStorage.setItem("ID",Item[0].id);
     }
 };
 
@@ -99,10 +103,4 @@ function addElement (id,name,imageUrl,description,price){
     tr.appendChild(td5);
 
     document.getElementById("ProductList").append(tr);
-}
-
-//Se rendre sur la page d'un produit
-
-function details (Item){
-    localStorage.setItem("ID",Item[0].id);
 }
