@@ -38,7 +38,19 @@ xhr.onload = function(){
 
         // Récupération de l'ID dans localStorage
         function details (Item){
-            localStorage.setItem("ID",Item[0].id);
+            let Current = Item[i].id;
+            for (i=0; i < HTMLCollection.length; i++){
+                
+                if (Item[i].id === Current){
+                    console.log(Item[i].id);
+                    localStorage.setItem("ID",Item[i].id);
+                }
+                else{
+                    Counter++;
+                    console.log(Counter);
+                }
+            }
+            
         }
 
     }
