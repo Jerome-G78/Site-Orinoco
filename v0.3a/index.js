@@ -31,30 +31,56 @@ xhr.onload = function(){
             addElement(CAM._id,CAM.name,CAM.imageUrl,CAM.description,CAM.price);
         }
 
+        // Récupération de l'ID produit dans le localStorage
         let Item = document.getElementsByClassName("Item");
         console.log(Item);
 
-        Item[0].addEventListener("click",details(Item));
-
-        // Récupération de l'ID dans localStorage
-        function details (Item){
-            let Current = Item[i].id;
-            for (i=0; i < HTMLCollection.length; i++){
-                
-                if (Item[i].id === Current){
-                    console.log(Item[i].id);
-                    localStorage.setItem("ID",Item[i].id);
-                }
-                else{
-                    Counter++;
-                    console.log(Counter);
-                }
-            }
-            
+        for (let element of Item){     // La variable element récupère l'index actuel HTMLCollection de Item
+            element.addEventListener('click', event => {
+                console.log("OK");
+                // event.preventDefault();
+                localStorage.setItem("ID",element.id);
+                Details(this);
+            })
         }
 
-    }
+        /*
+        Item[0].addEventListener('click', event => {
+            console.log("OK");
+            // event.preventDefault();
+            localStorage.setItem("ID",Item[0].id);
+            Details(this);
+        })
 
+        Item[1].addEventListener('click', event => {
+            console.log("OK");
+            // event.preventDefault();
+            localStorage.setItem("ID",Item[1].id);
+            Details(this);
+        })
+
+        Item[2].addEventListener('click', event => {
+            console.log("OK");
+            // event.preventDefault();
+            localStorage.setItem("ID",Item[2].id);
+            Details(this);
+        })
+
+        Item[3].addEventListener('click', event => {
+            console.log("OK");
+            // event.preventDefault();
+            localStorage.setItem("ID",Item[3].id);
+            Details(this);
+        })
+
+        Item[4].addEventListener('click', event => {
+            console.log("OK");
+            // event.preventDefault();
+            localStorage.setItem("ID",Item[4].id);
+            Details(this);
+        })
+        */
+    }
 };
 
 // Fonction de création d'un produit
@@ -117,4 +143,12 @@ function addElement (id,name,imageUrl,description,price){
     tr.appendChild(td5);
 
     document.getElementById("ProductList").append(tr);
+}
+
+//Se rendre sur la page d'un produit
+
+function Details (Item) {
+   // localStorage.setItem("ID", document.getElementsByClassName(Item.innerHTML));
+   // console.log(localStorage.getItem("ID"));
+   console.log(Item);
 }
