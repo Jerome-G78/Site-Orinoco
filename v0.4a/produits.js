@@ -2,7 +2,9 @@
 
 // Variables globales
 let CAM="";
-let ID=localStorage.getItem("ID");  // Fixer la variable à l'élément séléctionnée
+let Lense="";
+let Qty=localStorage.setItem("qty",0);  // Initialiser une quantité
+let ID=localStorage.getItem("ID");      // Fixer la variable à l'élément séléctionnée
 
 // Requête serveur AJAX
 
@@ -40,28 +42,13 @@ xhr.onload = function(){
         for (let element of lense){
             element.addEventListener("click", event => {
             console.log("OK");
-            event.preventDefault();
+            // event.preventDefault();
+            Lense = element.value;
             localStorage.setItem("lense",element.value);
             })
-        }
 
-        // Ajouter au panier
-
-        let btn = document.getElementById("AddCart");
-        btn.addEventListener("click", addToCart(CAM.name,CAM.imageUrl,CAM.description,CAM.price));
-
-        function addToCart (name,imageUrl,description,price){
-            this.name = name,
-            this.imageUrl = imageUrl,
-            this.description = description,
-            this.price =price
-
-            localStorage.setItem("name", this.name);
-            localStorage.setItem("imageUrl", this.imageUrl);
-            localStorage.setItem("description", this.description);
-            localStorage.setItem("price", this.price);
-
-            console.log(this.name + " - "+ this.imageUrl + " - " + this.description + " - " + this.price);
+            Lense = element.value;
+            localStorage.setItem("lense",element.value);
         }
 
     }
@@ -130,7 +117,9 @@ function addElement (id,name,imageUrl,description,lense1,lense2,price){
 
     td4.appendChild(lenses);
     lenses.appendChild(L1);
-    lenses.appendChild(L2);
+
+    if (lense2 !=null){
+    lenses.appendChild(L2);}
     tr.appendChild(td4);
 
     let td5 = document.createElement("td");
@@ -140,4 +129,39 @@ function addElement (id,name,imageUrl,description,lense1,lense2,price){
     tr.appendChild(td5);
 
     document.getElementById("ProductList").append(tr);
+}
+
+// Ajouter au panier
+
+let btn = document.getElementById("AddCart");
+btn.addEventListener('click', function(){
+    let id = localStorage.getItem("ID");
+    let lense = localStorage.getItem("lense");
+    let qty = 1;
+
+    localStorage.setItem(id+"-Cart-qty", qty);
+    localStorage.setItem(id+"-Cart-lense", lense);
+    localStorage.setItem(id+"-Cart-ID", id);
+
+    // addToCart(this);
+    alert("Produit ajouté!");
+});
+
+// btn.addEventListener('click', addToCart(CAM._id,CAM.name,CAM.imageUrl,CAM.description,Lense,CAM.price));
+
+function addToCart (id,name,imageUrl,description,lense,price){
+    this.name = name,
+    this.imageUrl = imageUrl,
+    this.description = description,
+    this.lense = lense,
+    this.price = price
+
+    localStorage.setItem(id+"-Cart-name", this.name);
+    localStorage.setItem(id+"-Cart-imageUrl", this.imageUrl);
+    localStorage.setItem(id+"-Cart-description", this.description);
+    localStorage.setItem(id+"-Cart-lense",this.lense);
+    localStorage.setItem(id+"-Cart-price", this.price);
+
+    console.log(this.name + " - "+ this.imageUrl + " - " + this.description + " - " + this.lense +" - " + this.price);
+    // alert("Produit ajouté!");
 }
