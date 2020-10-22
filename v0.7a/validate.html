@@ -36,12 +36,38 @@
 			<h2>Finalisation de votre commande en cours...</h2>
 		</div>
         <div id="Validation">
-			<h2>Confirmation de commande : <span id="cdeNubmer">12345679</span> </h2>
+			<h2>Confirmation de commande : <span id="orderID">123456789</span> </h2>
+			<table>
+				<caption>Votre Commande</caption>
+				<thead class="thead-dark">
+					<tr class="text-center">
+						<th>Produit</th>
+						<th>Image</th>
+						<th>description</th>
+						<th>Lentille</th>
+						<th>Quantité</th>
+						<th>Prix €</th>
+					</tr>
+				</thead>
+				<tfoot>
+					<tr>
+						<td colspan="5">Total de votre commande</td>
+						<td id="Total">0</td>
+					</tr>
+				</tfoot>
+				<tbody id="ProductList">
+				</tbody>
+			</table>
             <p> 
                 Bonjour, <br/>
                 Nous vous remercions de votre commande. <br/>
                 Nous vous tiendrons informé par e-mail lorsque les articles de votre commande auront été expédiés.
-            </p>
+			</p>
+			<p> Adresse de livraison :</p>
+			<p><span id="firstName"></span> <span id="lastName"></span><br/>
+			<span id="address"></span> - <span id="city"></span><br/></p>
+			<p> Votre contact : </p>
+			<p><span id="email"></span></p>
         </div>
 
 		<footer id="Footer">

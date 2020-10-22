@@ -119,7 +119,7 @@ table, th, td, tr
     border-radius:0.43em;
     background-color: #905bfd;
     box-shadow:0 0 0.5em #d8852e;
-    display: none;
+/*  display: none; */
 }
 
 #Working
